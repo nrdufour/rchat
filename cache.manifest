@@ -1,0 +1,17 @@
+CACHE MANIFEST
+NETWORK:
+*
+CACHE:
+/js/app.js
+/js/controllers.js
+/js/directives.js
+/js/filters.js
+/js/services.js
+/css/main.css
+/css/bootstrap-3.1.1.min.css
+/css/bootstrap-theme-3.1.1.min.css
+/lib/pouchdb-1.1.0.min.js
+/lib/jquery-1.11.0.min.js
+/lib/bootstrap-3.1.1.min.js
+/lib/peer-0.3.min.js
+/lib/angular-1.2.13.min.js

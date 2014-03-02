@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html manifest="/cache.manifest" ng-app="chatApp">
+    <head>
+        <title>TEST</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="/css/bootstrap-3.1.1.min.css">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="/css/bootstrap-theme-3.1.1.min.css">
+
+        <link href="css/main.css" rel="stylesheet">
+    </head>
+    <body ng-controller="PeerCtrl">
+        <div class="page-header">
+          <h1>RChat <small>One small step at a time - v<span app-version></span></small></h1>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            settings
+                        </div>
+                        <div class="panel-body">
+                            <p>
+                                Key: <span ng-bind="peer.options.key"></span>
+                                <br/>
+                                Host: <span ng-bind="peer.options.host"></span>:<span ng-bind="peer.options.port"></span>
+                                <br/>
+                                Secure?: <span ng-bind="peer.options.secure"></span>
+                            </p>
+
+                            <hr/>
+
+                            <form role="form">
+                                <input type="text" class="form-control" id="destid" placeholder="Dest Id" ng-model="destid" ng-enter="connectTo()" />
+                                <button type="button" class="btn btn-default" ng-click="connectTo()">Connect To</button>
+                            </form>
+
+                            <hr />
+
+                            <p>Connected peers:</p>
+                            <ul>
+                                <li ng-repeat="cp in conns">
+                                    {{cp.peer}} -- {{cp.conn.open}}
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="panel-footer">
+                            peer id: <span ng-bind="peerid"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            chat room
+                        </div>
+                        <div class="panel-body">
+                            <p ng-repeat="m in chat">
+                            {{isMyself(m.id)}} : {{m.msg}}
+                            </p>
+                        </div>
+                        <div class="panel-footer">
+                            <form class="form-inline" role="form">
+                                  <div class="form-group">
+                                    <label class="sr-only" for="chatText">chat text</label>
+                                    <input type="text" class="form-control" id="chatText" ng-model="chatText" placeholder="Chat text" ng-enter="sendMsg()" />
+                                    <button type="button" class="btn btn-default" ng-click="sendMsg()">Send</button>
+                                  </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="footer">
+            <div class="container">
+                <p class="text-muted">Place sticky footer content here.</p>
+            </div>
+        </div>
+
+        <!-- PouchDB -->
+        <script src="/lib/pouchdb-1.1.0.min.js"></script>
+
+        <!-- Bootstrap -->
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="/lib/jquery-1.11.0.min.js"></script>
+        <!-- Latest compiled and minified JavaScript -->
+        <script src="/lib/bootstrap-3.1.1.min.js"></script>
+
+        <!-- PeerJS -->
+        <script src="/lib/peer-0.3.min.js"></script>
+
+        <!-- AngularJS -->
+        <script src="/lib/angular-1.2.13.min.js"></script>
+        
+        <!-- RChat -->
+        <script src="/js/app.js"></script>
+        <script src="/js/services.js"></script>
+        <script src="/js/controllers.js"></script>
+        <script src="/js/filters.js"></script>
+        <script src="/js/directives.js"></script>
+    </body>
+</html>
